@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Q1 SW2: The Login</title>
+		<!-- google fonts -->
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+		<!-- internal CSS -->
+			<style>
+				body {
+					background-image: url(https://i.pinimg.com/564x/5e/23/b0/5e23b011b4f0b0ff478f72c211feb1a5.jpg);
+					background-size: cover;
+					background-position:center;
+					background-attachment: fixed;
+					margin:0px;
+					padding:0px;
+					display: flex;
+           			flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					padding-top:50px;
+					font-family: mukta;
+				}
+				.header{
+					background-color: #BF8A8A;
+					margin: 0px;
+					padding: 10px;
+					text-align: center;
+					color: white;
+					font-family: Mukta;
+					width: 100%;
+					position: fixed;
+					top: 0;
+					left: 0;
+
+				}
+				.container{
+					margin:90px;
+					padding:30px;
+					background: white;
+					border-radius: 20px;
+					box-shadow: 0px 0px 5px 7px rgba(191,138,138,0.75);
+					width:500px;
+					display:flex;
+					flex-direction: column;
+					align-items: center;
+				}
+				.pfp{
+					margin-bottom: 20px;
+					margin-left: 20px;
+					width:150px;
+					height: 150px;
+					border-radius:50%;
+					object-fit: cover;
+					display: block;
+
+				}
+				h2{
+					font-family: mukta;
+					text-align: center;
+					color: #73323E;
+					margin: 10px 0;
+				}
+				input[type="text"], input[type="password"]{
+					width:100%;
+					padding:5px;
+					margin:5px;
+					border:2px solid #73323E;
+					border-radius: 5px;
+					box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1)
+				}
+				.form-button{
+					width: 100%;
+					padding: 5px;
+					background-color: #73323E;
+					color: white;
+					border-radius: 10px;
+					cursor: pointer;
+					margin-left: 5px;
+					margin-top: 5px;
+				}
+				button{
+					width: 100%;
+					padding:5px;
+					background-color: #73323E;
+					color:white;
+					border:none;
+					text-align: center;
+				}
+				span{
+					color: #813341;
+					font-family: Mukta;
+				}
+				.footer{
+					background-color: #BF8A8A;
+					margin: 0px;
+					padding: 3px;
+					text-align: center;
+					color: white;
+					font-family: Mukta;
+					width: 100%;
+					bottom:0;
+					position: fixed;
+
+				}
+				.exit {
+					align-self: flex-end;
+					cursor: pointer;
+					color: red;
+				}
+				.profile-info{
+					display: none;
+					flex-direction: column;
+			        align-items: center;
+			        background: white;
+			        padding: 20px;
+			        padding-right: 30px;
+			        border-radius: 10px;
+			        box-shadow: 0px 0px 5px 7px rgba(191,138,138,0.75);
+			        margin-top: 150px;
+				}
+				
+			</style>
+</head>
+<body>
+	<div class= "header">
+		<h1> Welcome to my website! </h1>
+	</div>
+
+	<div class= "container" id="login-container">
+		<form id="login-form">
+				<img src= "https://i.pinimg.com/564x/46/37/02/4637027c471c73d4859b31fd9999e360.jpg" class="pfp">
+				<h2>LOGIN</h2>
+				<label for="username">
+					<span>Username:</span>
+				</label>
+				<br />
+				<input type="text" id="username"name= "username" placeholder="Enter username">
+				<br />
+				<label for="password">
+					<span>Password:</span>
+				</label>
+				<br />
+				<input type="password" name="password" placeholder="Enter password">
+			
+
+				<div class= "form-button">
+					<button type="submit" name="submit">Login</button>
+				</div>
+		</form>
+	</div>
+
+	<div class="profile-info" id="profile-info">
+		<span class="exit" onclick="hideUserInfo()">X</span>
+		<img src="https://i.pinimg.com/564x/46/37/02/4637027c471c73d4859b31fd9999e360.jpg" class="pfp">
+		<h2 id="show-uname"></h2>
+		<label>
+			<input type="checkbox"> <span>Remember me</span>
+		</label>
+	</div>
+
+	<div class= "footer">
+		<h4> Clarisse Yvonne Casal 9-Emerald </h4>
+	</div>
+	<script> 
+	 document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+
+        const username = document.querySelector('input[name="username"]').value;
+        const password = document.querySelector('input[name="password"]').value;
+
+        if (username === '' || password === '') {
+            alert('Please enter both username and password');
+            return;
+        }
+
+        document.getElementById('show-uname').textContent = username;
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('profile-info').style.display = 'flex';
+    });
+
+    function hideUserInfo() {
+        document.getElementById('profile-info').style.display = 'none';
+        document.getElementById('login-container').style.display = 'flex';
+        document.getElementById('login-form').reset(); 
+    } 
+	</script>
+</body>
+</html>
+
+<!-- references:
+alert box: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_alert
+profile info script: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal -->
